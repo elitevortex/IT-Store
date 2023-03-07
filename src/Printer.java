@@ -1,0 +1,36 @@
+public class Printer extends Device{
+    private int ppm;
+
+    public Printer(String newName, String newDescription,
+                   int newPpm){
+        super(newName, newDescription);
+        this.ppm = newPpm;
+    }
+    public String getName(){
+        return super.getName();
+    }
+
+    public String getDescription(){
+        return super.getDescription();
+    }
+
+    public int getPpm() {
+        return this.ppm;
+    }
+
+    public void setName(String newName){
+        super.setName(newName);
+    }
+
+    public void setDescription(String newDescription) {
+        super.setDescription(newDescription);
+    }
+
+    public void setPpm(int newPpm){
+        this.ppm = newPpm;
+    }
+
+    public String toString(){
+        return super.toString() + "PPM: " + getPpm();
+    }
+}

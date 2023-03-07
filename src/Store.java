@@ -2,8 +2,6 @@ public class Store {
     private Computer[] computers;
     private Printer[] printers;
 
-    Store(){}
-
     //  creates the objects of the arrays using the input lengths
     public void initStore(int numComputer, int numPrinters){
         this.computers = new Computer[numComputer];

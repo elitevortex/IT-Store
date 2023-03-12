@@ -37,7 +37,7 @@ public class Computer extends Device {
         Utils myUtil = new Utils();
         return myUtil.nextID(100000, 9999999);
     }
-
+        //
     // toString concatinated with unique attribute
     public String toString(){
         return super.toString() + "manufacture: " + getManufacture();

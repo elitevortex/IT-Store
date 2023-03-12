@@ -35,7 +35,7 @@ abstract public class Device {
     }
 
     public abstract int generateId();
-
+//
     // To string method
     public String toString(){
       return "| name: " + this.getName() + " | description: " + this.getDescription() + " | ";

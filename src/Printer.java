@@ -30,6 +30,11 @@ public class Printer extends Device{
         this.ppm = newPpm;
     }
 
+    public int generateId(){
+        Utils myUtil = new Utils();
+        return myUtil.nextID(100, 999);
+    }
+
     public String toString(){
         return super.toString() + "PPM: " + getPpm();
     }

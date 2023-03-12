@@ -33,6 +33,11 @@ public class Computer extends Device {
         this.manufacture = newManufacture;
     }
 
+    public int generateId(){
+        Utils myUtil = new Utils();
+        return myUtil.nextID(100000, 9999999);
+    }
+
     // toString concatinated with unique attribute
     public String toString(){
         return super.toString() + "manufacture: " + getManufacture();

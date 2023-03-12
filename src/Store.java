@@ -6,11 +6,11 @@ public class Store {
     private ArrayList<Computer> computers = new ArrayList<>();
     private ArrayList<Printer> printers = new ArrayList<>();
 
-//    //  creates the objects of the arrays using the input lengths
-//    public void initStore(int numComputer, int numPrinters){
-//        this.computers = new ArrayList<>(numComputer);
-//        this.printers = new ArrayList<>(numPrinters);
-//    }
+    //  creates the objects of the arrays using the input lengths
+    public void initStore(int numComputer, int numPrinters){
+        this.computers = new ArrayList<>(numComputer);
+        this.printers = new ArrayList<>(numPrinters);
+    }
 
     // creating three computers and saving them in the array "computers"
     public void createComputers() {
@@ -55,28 +55,15 @@ public class Store {
         }
     }
 
-    public static int menuItem() {
-        Scanner sel = new Scanner(System.in);
 
-        System.out.println("1) New Computer");
-        System.out.println("2) New Printer");
-        System.out.println("3) List Computers");
-        System.out.println("4) List Printers");
-        System.out.println("5) Exit");
-        System.out.print("Select one:");
-        int choice = Integer.parseInt(sel.nextLine());
-        System.out.println("Your choice:"+choice);
-        return choice;
+//     calling all creation and printing methods
+    public void runBazar(){
+        initStore(3, 2);
+        createComputers();
+        createPrinters();
+        printComputers();
+        printPrinters();
     }
-
-    // calling all creation and printing methods
-//    public void runBazar(){
-//        initStore(3, 2);
-//        createComputers();
-//        createPrinters();
-//        printComputers();
-//        printPrinters();
-//    }
 
 
 

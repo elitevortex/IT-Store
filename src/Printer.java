@@ -33,7 +33,7 @@ public class Printer extends Device{
     public int generateId(){
         Utils myUtil = new Utils();
         return myUtil.nextID(100, 999);
-        //
+
     }
 
     public String toString(){

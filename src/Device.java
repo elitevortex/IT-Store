@@ -1,4 +1,5 @@
-public class Device {
+abstract public class Device {
+    private int id;
     private String name;
     private String description;
 
@@ -9,6 +10,9 @@ public class Device {
     }
 
     // Getters
+    public int getId(){
+        return this.id;
+    }
     public String getName(){
         return this.name;
     }
@@ -18,6 +22,10 @@ public class Device {
     }
 
     // Setters
+    public void setId(int newId){
+        this.id = newId;
+    }
+
     public void setName(String newName){
         this.name = newName;
     }
@@ -25,6 +33,8 @@ public class Device {
     public void setDescription(String newDescription){
         this.description = newDescription;
     }
+
+    public abstract int generateId();
 
     // To string method
     public String toString(){

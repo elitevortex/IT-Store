@@ -1,37 +1,56 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class Store {
-    private Computer[] computers;
-    private Printer[] printers;
+    private ArrayList<Computer> computers;
+    private ArrayList<Printer> printers;
 
     //  creates the objects of the arrays using the input lengths
     public void initStore(int numComputer, int numPrinters){
-        this.computers = new Computer[numComputer];
-        this.printers = new Printer[numPrinters];
+        this.computers = new ArrayList<>(numComputer);
+        this.printers = new ArrayList<>(numPrinters);
     }
 
     // creating three computers and saving them in the array "computers"
-    public void createComputers(){
-        computers[0] = new Computer("XPS", "Laptop 16 inch", "Dell");
-        computers[1] = new Computer("iMac", "Desltop 27 inch", "Apple");
-        computers[2] = new Computer("Thinkpad", "Laptop 14 inch", "Lenovo");
+    public void createComputers() {
+        String name, description, manufacture;
+        Scanner sel = new Scanner(System.in);
+        System.out.print("Enter Device Name:");
+        name = sel.nextLine();
+        System.out.print("Enter Device Description:");
+        description = sel.nextLine();
+        System.out.print("Enter Computer Manufacture: ");
+        manufacture = sel.next();
+        Computer aComputer = new Computer(name, description, manufacture);
+        computers.add(aComputer);
     }
 
     // creates two printers in the array printers
-    public void createPrinters(){
-        printers[0] = new Printer("Mono Printer", "Ink-jet Printer", 10);
-        printers[1] = new Printer("Multi Function", "Laser Printer", 10);
+    public void createPrinters() {
+        String name, description;
+        int ppm;
+        Scanner sel = new Scanner(System.in);
+        System.out.print("Enter Device Name:");
+        name = sel.nextLine();
+        System.out.print("Enter Device Description:");
+        description = sel.nextLine();
+        System.out.print("Enter Computer ppm: ");
+        ppm = sel.nextInt();
+        Printer aPrinter = new Printer(name, description, ppm);
+        printers.add(aPrinter);
     }
 
     // iterates through all the printers in the array and prints them
     public void printPrinters(){
-        for(int i = 0; i < this.printers.length; i++){
-            System.out.println("Printer (" + (i + 1)  + ") Type: Printer " + this.printers[i].toString());
+        for(int i = 0; i < this.printers.size(); i++){
+            System.out.println("Printer (" + (i + 1)  + ") Type: Printer " + this.printers.get(i).toString());
         }
     }
 
     // iterates through all the computers in the array and prints them.
     public void printComputers(){
-        for(int i = 0; i < this.computers.length; i++){
-            System.out.println("Computer (" + (i + 1)  + ") Type: Computer " + this.computers[i].toString());
+        for(int i = 0; i < this.computers.size(); i++){
+            System.out.println("Computer (" + (i + 1)  + ") Type: Computer " + this.computers.get(i).toString());
         }
     }
 

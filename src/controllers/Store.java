@@ -1,9 +1,12 @@
+package controllers;
+
 import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
+import models.*;
 
 public class Store {
-    private ArrayList<Computer> computers = new ArrayList<>();
+        private ArrayList<Computer> computers = new ArrayList<>();
     private ArrayList<Printer> printers = new ArrayList<>();
 
     //  creates the objects of the arrays using the input lengths
@@ -16,11 +19,11 @@ public class Store {
     public void createComputers() {
         String name, description, manufacture;
         Scanner sel = new Scanner(System.in);
-        System.out.print("Enter Device (computer) Name:");
+        System.out.print("Enter models.Device (computer) Name:");
         name = sel.nextLine();
-        System.out.print("Enter Device (computer) Description:");
+        System.out.print("Enter models.Device (computer) Description:");
         description = sel.nextLine();
-        System.out.print("Enter Computer Manufacture: ");
+        System.out.print("Enter models.Computer Manufacture: ");
         manufacture = sel.next();
         Computer aComputer = new Computer(name, description, manufacture);
         computers.add(aComputer);
@@ -31,11 +34,11 @@ public class Store {
         String name, description;
         int ppm;
         Scanner sel = new Scanner(System.in);
-        System.out.print("Enter Device (printer) Name:");
+        System.out.print("Enter models.Device (printer) Name:");
         name = sel.nextLine();
-        System.out.print("Enter Device (printer) Description:");
+        System.out.print("Enter models.Device (printer) Description:");
         description = sel.nextLine();
-        System.out.print("Enter Printer ppm: ");
+        System.out.print("Enter models.Printer ppm: ");
         ppm = sel.nextInt();
         Printer aPrinter = new Printer(name, description, ppm);
         printers.add(aPrinter);
@@ -44,14 +47,14 @@ public class Store {
     // iterates through all the printers in the array and prints them
     public void printPrinters(){
         for(int i = 0; i < this.printers.size(); i++){
-            System.out.println("Printer (" + (i + 1)  + ") ID: " + this.printers.get(i).generateId() + " | Type: Printer " + this.printers.get(i).toString());
+            System.out.println("models.Printer (" + (i + 1)  + ") ID: " + this.printers.get(i).generateId() + " | Type: models.Printer " + this.printers.get(i).toString());
         }
     }
 
     // iterates through all the computers in the array and prints them.
     public void printComputers(){
         for(int i = 0; i < this.computers.size(); i++){
-            System.out.println("Computer (" + (i + 1)  + ") ID: " + this.printers.get(i).generateId() + " | Type: Computer " + this.computers.get(i).toString());
+            System.out.println("models.Computer (" + (i + 1)  + ") ID: " + this.printers.get(i).generateId() + " | Type: models.Computer " + this.computers.get(i).toString());
         }
     }
 

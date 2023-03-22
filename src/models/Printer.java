@@ -1,4 +1,9 @@
-public class Printer extends Device{
+package models;
+import utils.*;
+
+import models.Device;
+
+public class Printer extends Device {
     private int ppm;
 
     public Printer(String newName, String newDescription,

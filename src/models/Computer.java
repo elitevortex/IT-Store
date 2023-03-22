@@ -1,3 +1,6 @@
+package models;
+import utils.*;
+
 public class Computer extends Device {
     private String manufacture;
 

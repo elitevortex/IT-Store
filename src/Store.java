@@ -44,26 +44,26 @@ public class Store {
     // iterates through all the printers in the array and prints them
     public void printPrinters(){
         for(int i = 0; i < this.printers.size(); i++){
-            System.out.println("Printer (" + (i + 1)  + ") Type: Printer " + this.printers.get(i).toString());
+            System.out.println("Printer (" + (i + 1)  + ") ID: " + this.printers.get(i).generateId() + " | Type: Printer " + this.printers.get(i).toString());
         }
     }
 
     // iterates through all the computers in the array and prints them.
     public void printComputers(){
         for(int i = 0; i < this.computers.size(); i++){
-            System.out.println("Computer (" + (i + 1)  + ") Type: Computer " + this.computers.get(i).toString());
+            System.out.println("Computer (" + (i + 1)  + ") ID: " + this.printers.get(i).generateId() + " | Type: Computer " + this.computers.get(i).toString());
         }
     }
 
 
-//     calling all creation and printing methods
-    public void runBazar(){
-        initStore(3, 2);
-        createComputers();
-        createPrinters();
-        printComputers();
-        printPrinters();
-    }
+////     calling all creation and printing methods
+//    public void runBazar(){
+//        initStore(3, 2);
+//        createComputers();
+//        createPrinters();
+//        printComputers();
+//        printPrinters();
+//    }
 
 
 

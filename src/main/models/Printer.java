@@ -1,7 +1,5 @@
-package models;
-import utils.*;
-
-import models.Device;
+package main.models;
+import main.utils.*;
 
 public class Printer extends Device {
     private int ppm;

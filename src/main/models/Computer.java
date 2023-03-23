@@ -1,5 +1,5 @@
-package models;
-import utils.*;
+package main.models;
+import main.utils.*;
 
 public class Computer extends Device {
     private String manufacture;

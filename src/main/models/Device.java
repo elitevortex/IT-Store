@@ -1,4 +1,4 @@
-package models;
+package main.models;
 
 abstract public class Device {
     private int id;

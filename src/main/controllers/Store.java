@@ -1,13 +1,14 @@
-package controllers;
+package main.controllers;
 
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
-import models.*;
+import main.models.*;
+import main.utils.PurchaseType;
 
-public class Store {
-        private ArrayList<Computer> computers = new ArrayList<>();
+public class Store implements IData{
+    private ArrayList<Computer> computers = new ArrayList<>();
     private ArrayList<Printer> printers = new ArrayList<>();
+    private ArrayList<Device> devices = new ArrayList<>();
 
     //  creates the objects of the arrays using the input lengths
     public void initStore(int numComputer, int numPrinters){
@@ -19,14 +20,15 @@ public class Store {
     public void createComputers() {
         String name, description, manufacture;
         Scanner sel = new Scanner(System.in);
-        System.out.print("Enter models.Device (computer) Name:");
+        System.out.print("Enter Device (computer) Name:");
         name = sel.nextLine();
-        System.out.print("Enter models.Device (computer) Description:");
+        System.out.print("Enter Device (computer) Description:");
         description = sel.nextLine();
-        System.out.print("Enter models.Computer Manufacture: ");
+        System.out.print("Enter Computer Manufacture: ");
         manufacture = sel.next();
         Computer aComputer = new Computer(name, description, manufacture);
         computers.add(aComputer);
+        devices.add(aComputer);
     }
 
     // creates two printers in the array printers
@@ -34,40 +36,40 @@ public class Store {
         String name, description;
         int ppm;
         Scanner sel = new Scanner(System.in);
-        System.out.print("Enter models.Device (printer) Name:");
+        System.out.print("Enter Device (printer) Name:");
         name = sel.nextLine();
-        System.out.print("Enter models.Device (printer) Description:");
+        System.out.print("Enter Device (printer) Description:");
         description = sel.nextLine();
-        System.out.print("Enter models.Printer ppm: ");
+        System.out.print("Enter Printer ppm: ");
         ppm = sel.nextInt();
         Printer aPrinter = new Printer(name, description, ppm);
         printers.add(aPrinter);
+        devices.add(aPrinter);
     }
+
 
     // iterates through all the printers in the array and prints them
     public void printPrinters(){
         for(int i = 0; i < this.printers.size(); i++){
-            System.out.println("models.Printer (" + (i + 1)  + ") ID: " + this.printers.get(i).generateId() + " | Type: models.Printer " + this.printers.get(i).toString());
+            System.out.println("Printer (" + (i + 1)  + ") ID: " + this.printers.get(i).generateId() + " | Type: Printer " + this.printers.get(i).toString());
         }
     }
 
     // iterates through all the computers in the array and prints them.
     public void printComputers(){
         for(int i = 0; i < this.computers.size(); i++){
-            System.out.println("models.Computer (" + (i + 1)  + ") ID: " + this.printers.get(i).generateId() + " | Type: models.Computer " + this.computers.get(i).toString());
+            System.out.println("Computer (" + (i + 1)  + ") ID: " + this.computers.get(i).generateId() + " | Type: Computer " + this.computers.get(i).toString());
         }
     }
 
 
-////     calling all creation and printing methods
-//    public void runBazar(){
-//        initStore(3, 2);
-//        createComputers();
-//        createPrinters();
-//        printComputers();
-//        printPrinters();
-//    }
-
-
-
+    @Override
+    public boolean isDeviceAvailable(int id) {
+        for (Device device: this.devices){
+            if (device.getId() == id){
+                return true;
+            }
+        }
+        return false;
+    }
 }

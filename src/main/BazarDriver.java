@@ -3,13 +3,17 @@ package main;
 import main.controllers.*;
 import main.utils.MenuManager;
 
+import java.awt.*;
+
 public class BazarDriver {
     public static void main(String[] args) {
-        Store newStore = new Store();
         PurchaseManager purchaseManager = new PurchaseManager();
+        MenuManager menuManager = new MenuManager();
+        Store newStore = new Store(purchaseManager, menuManager);
+
         int selection;
         do {
-            selection = MenuManager.menuItem();
+            selection = menuManager.menuItem();
             switch (selection) {
                 case 1:
                     newStore.createComputers();
@@ -18,7 +22,7 @@ public class BazarDriver {
                     newStore.createPrinters();
                     break;
                 case 3:
-                    purchaseManager.createPurchase();
+                    newStore.createPurchase();
                     break;
                 case 4:
                     newStore.printComputers();
@@ -30,8 +34,6 @@ public class BazarDriver {
                 case 7:
                     System.exit(0);
             }
-        } while (selection != 10);
+        }while (selection != 7);
     }
-
-
 }

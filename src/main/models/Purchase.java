@@ -6,20 +6,19 @@ public abstract class Purchase {
     private int customerId;
     private int deviceId;
     private String date;
-    private String deliveryAddress;
     private PurchaseType type;
 
+
     Purchase(){};
-    Purchase(int newCustomerId, int newDeviceId , String newDate, String newDeliveryAddress, PurchaseType newType){
+    Purchase(int newCustomerId, int newDeviceId , String newDate, PurchaseType newType){
         this.customerId = newCustomerId;
         this.deviceId = newDeviceId;
         this.date = newDate;
-        this.deliveryAddress = newDeliveryAddress;
         this.type = newType;
     }
-    public int newPurchaseId(){
+    public void newPurchaseId(){
         Utils myUtil = new Utils();
-        return myUtil.nextID(100000, 9999999);
+        this.purchaseId = myUtil.nextID(100000, 9999999);
     }
 
     public int getCustomerId(){ return this.customerId;}
@@ -28,6 +27,7 @@ public abstract class Purchase {
     }
     public String getDate(){ return this.date;}
     public PurchaseType getType(){return this.type;}
+    public int getPurchaseId(){return this.purchaseId;}
 
 }
 

@@ -1,19 +1,22 @@
 package main.controllers;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 import main.models.*;
+import main.utils.MenuManager;
 import main.utils.PurchaseType;
 
 public class Store implements IData{
     private ArrayList<Computer> computers = new ArrayList<>();
     private ArrayList<Printer> printers = new ArrayList<>();
     private ArrayList<Device> devices = new ArrayList<>();
+    private PurchaseManager purchaseManager = new PurchaseManager();
+    private MenuManager menuManager = new MenuManager();
 
-    //  creates the objects of the arrays using the input lengths
-    public void initStore(int numComputer, int numPrinters){
-        this.computers = new ArrayList<>(numComputer);
-        this.printers = new ArrayList<>(numPrinters);
+    public Store(PurchaseManager newPurchaseManager, MenuManager newMenuManager){
+        this.purchaseManager = newPurchaseManager;
+        this.menuManager = newMenuManager;
     }
 
     // creating three computers and saving them in the array "computers"
@@ -47,18 +50,69 @@ public class Store implements IData{
         devices.add(aPrinter);
     }
 
+    public void createPurchase() {
+        int purchaseId;
+        int customerId;
+        int deviceId;
+        String date;
+        int typeSelection;
+        PurchaseType type;
+        String deliveryAddress;
+        String storeLocation;
+
+
+        Scanner sel = new Scanner(System.in);
+
+        System.out.print("Enter  CustomerId:");
+        customerId = sel.nextInt();
+
+        System.out.print("Enter DeviceId: ");
+        deviceId = sel.nextInt();
+
+        System.out.print("Enter Date: ");
+        date = sel.nextLine();
+
+        System.out.print("Enter Type (O online) OR (1 in_store): ");
+        typeSelection = sel.nextInt();
+
+
+
+        if (typeSelection == 0) {
+            type = PurchaseType.ONLINE;
+
+            // TODO - WHY doesn't it accept any input
+            System.out.print("Enter Delivery Address: ");
+            deliveryAddress = sel.nextLine();
+
+            Purchase newPurchase = new OnlinePurchase(customerId, deviceId, date, deliveryAddress, type);
+            newPurchase.newPurchaseId();
+
+            this.purchaseManager.makePurchase(this, newPurchase);
+        } else {
+            type = PurchaseType.IN_STORE;
+
+            // TODO - WHY doesn't it accept any input
+            System.out.print("Enter Store Location: ");
+            storeLocation = sel.nextLine();
+
+            Purchase newPurchase = new InStorePurchase(customerId, deviceId, date, storeLocation, type);
+            newPurchase.newPurchaseId();
+            this.purchaseManager.makePurchase(this, newPurchase);
+
+        }
+    }
 
     // iterates through all the printers in the array and prints them
     public void printPrinters(){
         for(int i = 0; i < this.printers.size(); i++){
-            System.out.println("Printer (" + (i + 1)  + ") ID: " + this.printers.get(i).generateId() + " | Type: Printer " + this.printers.get(i).toString());
+            System.out.println("Printer (" + (i + 1)  + ") ID: " + this.printers.get(i).getId()+ " | Type: Printer " + this.printers.get(i).toString());
         }
     }
 
     // iterates through all the computers in the array and prints them.
     public void printComputers(){
         for(int i = 0; i < this.computers.size(); i++){
-            System.out.println("Computer (" + (i + 1)  + ") ID: " + this.computers.get(i).generateId() + " | Type: Computer " + this.computers.get(i).toString());
+            System.out.println("Computer (" + (i + 1)  + ") ID: " + this.computers.get(i).getId() + " | Type: Computer " + this.computers.get(i).toString());
         }
     }
 

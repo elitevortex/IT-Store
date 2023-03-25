@@ -8,6 +8,8 @@ public class Printer extends Device {
                    int newPpm){
         super(newName, newDescription);
         this.ppm = newPpm;
+        setId(generateId());
+
     }
     public String getName(){
         return super.getName();

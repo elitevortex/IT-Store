@@ -117,7 +117,7 @@ public class Store implements IData{
             System.out.println("Computer (" + (i + 1)  + ") ID: " + this.computers.get(i).getId() + " | Type: Computer " + this.computers.get(i).toString());
         }
     }
-
+//
 
     @Override
     public boolean isDeviceAvailable(int id) {

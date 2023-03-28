@@ -29,8 +29,10 @@ public class BazarDriver {
                     break;
                 case 5:
                     newStore.printPrinters();
+                    break;
                 case 6:
                     purchaseManager.printPurchases();
+                    break;
                 case 7:
                     System.exit(0);
             }

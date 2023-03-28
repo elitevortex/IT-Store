@@ -69,13 +69,15 @@ public class Store implements IData{
         System.out.print("Enter DeviceId: ");
         deviceId = sel.nextInt();
 
+        // Get rid of input buffer
+        sel.nextLine();
+
         System.out.print("Enter Date: ");
         date = sel.nextLine();
 
+
         System.out.print("Enter Type (O online) OR (1 in_store): ");
         typeSelection = sel.nextInt();
-
-
 
         if (typeSelection == 0) {
             type = PurchaseType.ONLINE;

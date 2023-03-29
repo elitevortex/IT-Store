@@ -1,10 +1,15 @@
-public class Printer extends Device{
+package main.models;
+import main.utils.*;
+
+public class Printer extends Device {
     private int ppm;
 
     public Printer(String newName, String newDescription,
                    int newPpm){
         super(newName, newDescription);
         this.ppm = newPpm;
+        setId(generateId());
+
     }
     public String getName(){
         return super.getName();

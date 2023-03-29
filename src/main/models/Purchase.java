@@ -16,11 +16,8 @@ public abstract class Purchase {
         this.date = newDate;
         this.type = newType;
     }
-    public void newPurchaseId(){
-        Utils myUtil = new Utils();
-        this.purchaseId = myUtil.nextID(100000, 9999999);
-    }
 
+    public void setPurchaseId(int Id){this.purchaseId = Id;}
     public int getCustomerId(){ return this.customerId;}
     public int getDeviceId(){
         return this.deviceId;

@@ -82,8 +82,6 @@ public class Store implements IData{
             deliveryAddress = sel.nextLine();
 
             Purchase newPurchase = new OnlinePurchase(customerId, deviceId, date, deliveryAddress, type);
-            newPurchase.newPurchaseId();
-
             this.purchaseManager.makePurchase(this, newPurchase);
         } else {
             type = PurchaseType.IN_STORE;
@@ -92,7 +90,6 @@ public class Store implements IData{
             storeLocation = sel.nextLine();
 
             Purchase newPurchase = new InStorePurchase(customerId, deviceId, date, storeLocation, type);
-            newPurchase.newPurchaseId();
             this.purchaseManager.makePurchase(this, newPurchase);
 
         }

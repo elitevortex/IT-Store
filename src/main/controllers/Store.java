@@ -64,25 +64,20 @@ public class Store implements IData{
         Scanner sel = new Scanner(System.in);
 
         System.out.print("Enter  CustomerId:");
-        customerId = sel.nextInt();
+        customerId = Integer.parseInt(sel.nextLine());
 
         System.out.print("Enter DeviceId: ");
-        deviceId = sel.nextInt();
-
-        // Get rid of input buffer
-        sel.nextLine();
+        deviceId = Integer.parseInt(sel.nextLine());
 
         System.out.print("Enter Date: ");
         date = sel.nextLine();
 
-
         System.out.print("Enter Type (O online) OR (1 in_store): ");
-        typeSelection = sel.nextInt();
+        typeSelection = Integer.parseInt(sel.nextLine());
 
         if (typeSelection == 0) {
             type = PurchaseType.ONLINE;
 
-            // TODO - WHY doesn't it accept any input
             System.out.print("Enter Delivery Address: ");
             deliveryAddress = sel.nextLine();
 
@@ -93,7 +88,6 @@ public class Store implements IData{
         } else {
             type = PurchaseType.IN_STORE;
 
-            // TODO - WHY doesn't it accept any input
             System.out.print("Enter Store Location: ");
             storeLocation = sel.nextLine();
 

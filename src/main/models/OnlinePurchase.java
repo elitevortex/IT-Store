@@ -10,5 +10,6 @@ public class OnlinePurchase extends Purchase{
         this.deliveryAddress = newDeliveryAddress;
     }
 
+    public String getDeliveryAddress(){return this.deliveryAddress; }
 
 }

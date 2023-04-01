@@ -1,12 +1,9 @@
 package main.controllers;
 
-import main.models.InStorePurchase;
-import main.models.OnlinePurchase;
-import main.models.Purchase;
+import main.models.purchases.Purchase;
 import main.utils.PurchaseType;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class PurchaseManager{
     private ArrayList<Purchase> purchases = new ArrayList<>();

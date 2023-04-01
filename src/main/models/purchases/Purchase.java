@@ -1,4 +1,4 @@
-package main.models;
+package main.models.purchases;
 import main.utils.*;
 
 public abstract class Purchase {
@@ -10,7 +10,7 @@ public abstract class Purchase {
 
 
     Purchase(){};
-    Purchase(int newCustomerId, int newDeviceId , String newDate, PurchaseType newType){
+    public Purchase(int newCustomerId, int newDeviceId , String newDate, PurchaseType newType){
         this.customerId = newCustomerId;
         this.deviceId = newDeviceId;
         this.date = newDate;
@@ -18,6 +18,18 @@ public abstract class Purchase {
     }
 
     public void setPurchaseId(int Id){this.purchaseId = Id;}
+    public void setCustomerId(int Id){this.customerId = Id;}
+
+    public boolean setDate(String newDate) {
+        if((Utils.stringInRange(newDate, 8, 8) == true)){
+            this.date = date;
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
     public int getCustomerId(){ return this.customerId;}
     public int getDeviceId(){
         return this.deviceId;

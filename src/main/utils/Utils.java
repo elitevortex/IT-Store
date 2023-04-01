@@ -7,5 +7,22 @@ public class Utils {
         Random r = new Random();
         return (r.nextInt(high - low) + low);
     }
+
+    public static boolean stringInRange(String checkingString, int lo, int hi){
+        if (lo <= checkingString.length() && checkingString.length() <= hi){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    public static boolean intInRange(int checkingInt, int lo, int hi){
+        if (lo <= checkingInt && checkingInt <= hi){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 }
 

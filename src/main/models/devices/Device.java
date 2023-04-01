@@ -1,4 +1,5 @@
-package main.models;
+package main.models.devices;
+import main.utils.Utils;
 
 abstract public class Device {
     private int id;
@@ -28,12 +29,24 @@ abstract public class Device {
         this.id = newId;
     }
 
-    public void setName(String newName){
-        this.name = newName;
+    public boolean setName(String newName){
+        if ((Utils.stringInRange(newName, 3, 15) == true) ){
+            this.name = newName;
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
-    public void setDescription(String newDescription){
-        this.description = newDescription;
+    public boolean setDescription(String newDescription){
+        if ((Utils.stringInRange(newDescription, 5, 20) == true)){
+            this.description = newDescription;
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     public abstract int generateId();

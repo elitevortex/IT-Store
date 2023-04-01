@@ -1,10 +1,16 @@
 package main.controllers;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Scanner;
-import main.models.*;
-import main.utils.MenuManager;
+
+import main.models.devices.Computer;
+import main.models.devices.Device;
+import main.models.devices.Printer;
+import main.models.purchases.InStorePurchase;
+import main.models.purchases.OnlinePurchase;
+import main.models.purchases.Purchase;
+import main.utils.IMenuManager;
+import main.utils.MenuManagerEmployee;
 import main.utils.PurchaseType;
 
 public class Store implements IData{
@@ -12,9 +18,9 @@ public class Store implements IData{
     private ArrayList<Printer> printers = new ArrayList<>();
     private ArrayList<Device> devices = new ArrayList<>();
     private PurchaseManager purchaseManager = new PurchaseManager();
-    private MenuManager menuManager = new MenuManager();
+    private IMenuManager menuManager = new MenuManagerEmployee();
 
-    public Store(PurchaseManager newPurchaseManager, MenuManager newMenuManager){
+    public Store(PurchaseManager newPurchaseManager, IMenuManager newMenuManager){
         this.purchaseManager = newPurchaseManager;
         this.menuManager = newMenuManager;
     }
@@ -118,5 +124,9 @@ public class Store implements IData{
             }
         }
         return false;
+    }
+
+    public void runBazar() {
+        //TODO
     }
 }

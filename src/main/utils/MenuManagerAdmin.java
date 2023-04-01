@@ -2,8 +2,8 @@ package main.utils;
 
 import java.util.Scanner;
 
-public class MenuManager {
-    public static int menuItem() {
+public class MenuManagerAdmin implements IMenuManager{
+    public int menuItem() {
         Scanner sel = new Scanner(System.in);
 
         System.out.println("1) New Computer");

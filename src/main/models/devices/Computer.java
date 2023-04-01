@@ -1,4 +1,5 @@
-package main.models;
+package main.models.devices;
+import main.models.devices.Device;
 import main.utils.*;
 
 public class Computer extends Device {
@@ -11,30 +12,18 @@ public class Computer extends Device {
         setId(generateId());
     }
 
-    // Getters
-    public String getName(){
-        return super.getName();
-    }
-
-    public String getDescription(){
-        return super.getDescription();
-    }
-
     public String getManufacture(){
         return this.manufacture;
     }
 
-    // Setters
-    public void setName(String newName){
-        super.setName(newName);
-    }
-
-    public void setDescription(String newDescription){
-        super.setDescription(newDescription);
-    }
-
-    public void setManufacture(String newManufacture){
-        this.manufacture = newManufacture;
+    public boolean setManufacture(String newManufacture){
+        if ((Utils.stringInRange(newManufacture, 3, 15) == true)){
+            this.manufacture = newManufacture;
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     public int generateId(){

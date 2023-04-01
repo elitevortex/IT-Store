@@ -1,4 +1,4 @@
-package main.models;
+package main.models.devices;
 import main.utils.*;
 
 public class Printer extends Device {
@@ -11,28 +11,19 @@ public class Printer extends Device {
         setId(generateId());
 
     }
-    public String getName(){
-        return super.getName();
-    }
-
-    public String getDescription(){
-        return super.getDescription();
-    }
 
     public int getPpm() {
         return this.ppm;
     }
 
-    public void setName(String newName){
-        super.setName(newName);
-    }
-
-    public void setDescription(String newDescription) {
-        super.setDescription(newDescription);
-    }
-
-    public void setPpm(int newPpm){
-        this.ppm = newPpm;
+    public boolean setPpm(int newPpm){
+        if ((Utils.intInRange(newPpm, 5, 20) == true)){
+            this.ppm = newPpm;
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     public int generateId(){

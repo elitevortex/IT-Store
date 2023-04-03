@@ -70,15 +70,19 @@ public class Store implements IData{
 
         Scanner sel = new Scanner(System.in);
 
+        // TODO
         System.out.print("Enter  CustomerId:");
         customerId = Integer.parseInt(sel.nextLine());
 
+
+        // TODO
         System.out.print("Enter DeviceId: ");
         deviceId = Integer.parseInt(sel.nextLine());
 
         System.out.print("Enter Date: ");
         date = sel.nextLine();
 
+        // TODO
         System.out.print("Enter Type (O online) OR (1 in_store): ");
         typeSelection = Integer.parseInt(sel.nextLine());
 

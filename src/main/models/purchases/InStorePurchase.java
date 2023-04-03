@@ -8,8 +8,14 @@ public class InStorePurchase extends Purchase {
 
     public InStorePurchase(int newCustomerId, int newDeviceId , String newDate, String newStoreLocation, PurchaseType newType) {
         super(newCustomerId,newDeviceId , newDate,  newType);
+
+        try{
+            setStoreLocation(newStoreLocation);
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+        }
         setPurchaseId(newPurchaseId());
-        this.storeLocation = newStoreLocation;
+
     }
 
     public String getStoreLocation(){

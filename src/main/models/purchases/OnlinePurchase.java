@@ -8,8 +8,14 @@ public class OnlinePurchase extends Purchase {
 
     public OnlinePurchase(int newCustomerId, int newDeviceId , String newDate, String newDeliveryAddress, PurchaseType newType) {
         super(newCustomerId,newDeviceId , newDate,  newType);
+
         setPurchaseId(newPurchaseId());
-        this.deliveryAddress = newDeliveryAddress;
+
+        try{
+            setDeliveryAddress(newDeliveryAddress);
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+        }
     }
 
     public String getDeliveryAddress(){return this.deliveryAddress; }

@@ -6,15 +6,11 @@ import main.utils.MenuManagerAdmin;
 
 public class BazarDriver {
     public static void main(String[] args) {
-        try{
-            PurchaseManager purchaseManager = new PurchaseManager();
-            IMenuManager  menuManager = new MenuManagerAdmin();
-            Store newStore = new Store(purchaseManager, menuManager);
-            newStore.runBazar();
-        }
-        catch (Exception e){
-            System.out.println(e.getMessage());
-        }
+        PurchaseManager purchaseManager = new PurchaseManager();
+        IMenuManager  menuManager = new MenuManagerAdmin();
+        Store newStore = new Store(purchaseManager, menuManager);
+        newStore.runBazar();
+
 //        int selection;
 //        do {
 //            selection = menuManager.menuItem();

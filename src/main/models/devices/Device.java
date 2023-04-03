@@ -8,8 +8,14 @@ abstract public class Device {
 
     // 2 Param construct
     public Device(String newName, String newDescription){
-        this.name = newName;
-        this.description = newDescription;
+        try {
+            setName(newName);
+            setDescription(newDescription);
+        }
+        catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+
+        }
     }
 
     // Getters

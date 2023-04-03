@@ -4,10 +4,15 @@ import main.utils.*;
 public class Printer extends Device {
     private int ppm;
 
-    public Printer(String newName, String newDescription,
-                   int newPpm){
+    public Printer(String newName, String newDescription, int newPpm){
         super(newName, newDescription);
-        this.ppm = newPpm;
+
+        try{
+            setPpm(newPpm);
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+        }
+
         setId(generateId());
 
     }

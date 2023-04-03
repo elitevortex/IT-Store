@@ -11,7 +11,12 @@ public abstract class Purchase {
 
     Purchase(){};
     public Purchase(int newCustomerId, int newDeviceId , String newDate, PurchaseType newType){
-        this.customerId = newCustomerId;
+        try {
+            setCustomerId(newCustomerId);
+            setDate(newDate);
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+        }
         this.deviceId = newDeviceId;
         this.date = newDate;
         this.type = newType;

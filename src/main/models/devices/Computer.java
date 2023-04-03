@@ -8,7 +8,12 @@ public class Computer extends Device {
 
     public Computer(String newName, String newDescription, String newManufacture){
         super(newName, newDescription);
-        this.manufacture = newManufacture;
+        try{
+            setManufacture(newManufacture);
+        }
+        catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+        }
         setId(generateId());
     }
 

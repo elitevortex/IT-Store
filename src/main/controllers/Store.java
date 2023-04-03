@@ -21,6 +21,7 @@ public class Store implements IData{
     private IMenuManager menuManager = new MenuManagerEmployee();
 
     public Store(PurchaseManager newPurchaseManager, IMenuManager newMenuManager){
+        // TODO - How do we validate input type?
         this.purchaseManager = newPurchaseManager;
         this.menuManager = newMenuManager;
     }

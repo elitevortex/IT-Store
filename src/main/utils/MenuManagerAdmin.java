@@ -3,6 +3,8 @@ package main.utils;
 import java.util.Scanner;
 
 public class MenuManagerAdmin implements IMenuManager{
+    private static MenuManagerAdmin adminMenu = null;
+
     public int menuItem() {
         Scanner sel = new Scanner(System.in);
 
@@ -17,5 +19,13 @@ public class MenuManagerAdmin implements IMenuManager{
         int choice = Integer.parseInt(sel.nextLine());
         System.out.println("Your choice:"+choice);
         return choice;
+    }
+
+    public static MenuManagerAdmin getInstance(){
+        MenuManagerAdmin newAdmin = new MenuManagerAdmin();
+        if (newAdmin == null){
+            adminMenu = newAdmin;
+        }
+        return newAdmin;
     }
 }

@@ -9,10 +9,7 @@ public class Computer extends Device {
     public Computer(String newName, String newDescription, String newManufacture) throws Exception {
         super(newName, newDescription);
 
-        if (setManufacture(newManufacture)){
-            // TODO
-        }
-        else{
+        if (!setManufacture(newManufacture)) {
             throw new Exception("Incorrect manufacture length");
         }
         setId(generateId());

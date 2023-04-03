@@ -2,15 +2,14 @@ package main.models.devices;
 import main.utils.*;
 
 public class Printer extends Device {
-    private int ppm;
+    private int ppm = 0;
 
     public Printer(String newName, String newDescription, int newPpm) throws Exception{
         super(newName, newDescription);
-        if(setPpm(newPpm)){
-            // TODO
-        } else{
+        if(!setPpm(newPpm)) {
             throw new Exception("Incorrect range of ppm");
         }
+
         setId(generateId());
 
     }

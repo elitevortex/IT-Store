@@ -6,12 +6,22 @@ import main.utils.PurchaseType;
 import java.util.ArrayList;
 
 public class PurchaseManager{
+    private static PurchaseManager purchaseManager = null;
+
     private ArrayList<Purchase> purchases = new ArrayList<>();
 
     public void makePurchase(IData devices, Purchase newPurchase){
         if (devices.isDeviceAvailable(newPurchase.getDeviceId())){
             this.purchases.add(newPurchase);
         }
+    }
+
+    public static PurchaseManager getInstance(){
+        PurchaseManager newPurchaseManager = new PurchaseManager();
+        if (newPurchaseManager == null){
+            purchaseManager = newPurchaseManager;
+        }
+        return newPurchaseManager;
     }
 
     public void printPurchases(){

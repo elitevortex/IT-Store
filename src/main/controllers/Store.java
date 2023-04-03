@@ -1,14 +1,11 @@
 package main.controllers;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import main.models.devices.Computer;
-import main.models.devices.Device;
-import main.models.devices.Printer;
-import main.models.purchases.InStorePurchase;
-import main.models.purchases.OnlinePurchase;
-import main.models.purchases.Purchase;
+import main.models.devices.*;
+import main.models.purchases.*;
 import main.utils.IMenuManager;
 import main.utils.MenuManagerEmployee;
 import main.utils.PurchaseType;
@@ -19,13 +16,41 @@ public class Store implements IData{
     private ArrayList<Device> devices = new ArrayList<>();
     private PurchaseManager purchaseManager = new PurchaseManager();
     private IMenuManager menuManager = new MenuManagerEmployee();
+    private static Store myStore = null;
 
-    public Store(PurchaseManager newPurchaseManager, IMenuManager newMenuManager){
-        // TODO - How do we validate input type?
-        this.purchaseManager = newPurchaseManager;
-        this.menuManager = newMenuManager;
+    private Store(PurchaseManager newPurchaseManager, IMenuManager newMenuManager) throws Exception {
+        if (!setMenuManager(newMenuManager) || ! setPurchaseManager(newPurchaseManager)){
+            throw new Exception("MenuManager or PurchaseManager is null");
+        }
     }
 
+    public static Store getInstance(PurchaseManager newPurchaseManager, IMenuManager newMenuManager) throws Exception{
+        Store store =  new Store(newPurchaseManager, newMenuManager);
+        if (myStore == null){
+            myStore = store;
+        }
+        return store;
+    }
+
+    public boolean setPurchaseManager(PurchaseManager newPurchaseManager){
+        if (newPurchaseManager != null) {
+            this.purchaseManager = newPurchaseManager;
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public boolean setMenuManager(IMenuManager newMenuManager){
+        if (newMenuManager != null){
+            this.menuManager = newMenuManager;
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
     // creating three computers and saving them in the array "computers"
     public void createComputers() throws Exception {
         String name, description, manufacture;
@@ -44,14 +69,19 @@ public class Store implements IData{
     // creates two printers in the array printers
     public void createPrinters() throws Exception{
         String name, description;
-        int ppm;
+        int ppm = 0;
         Scanner sel = new Scanner(System.in);
         System.out.print("Enter Device (printer) Name:");
         name = sel.nextLine();
         System.out.print("Enter Device (printer) Description:");
         description = sel.nextLine();
+
         System.out.print("Enter Printer ppm: ");
-        ppm = sel.nextInt();
+        try{
+            ppm = sel.nextInt();
+        } catch (InputMismatchException e) {
+            System.out.println(e);
+        }
         Printer aPrinter = new Printer(name, description, ppm);
         printers.add(aPrinter);
         devices.add(aPrinter);
@@ -59,10 +89,10 @@ public class Store implements IData{
 
     public void createPurchase() throws Exception {
         int purchaseId;
-        int customerId;
-        int deviceId;
+        int customerId = 0;
+        int deviceId = 0;
         String date;
-        int typeSelection;
+        int typeSelection = 0;
         PurchaseType type;
         String deliveryAddress;
         String storeLocation;
@@ -70,21 +100,30 @@ public class Store implements IData{
 
         Scanner sel = new Scanner(System.in);
 
-        // TODO
         System.out.print("Enter  CustomerId:");
-        customerId = Integer.parseInt(sel.nextLine());
+        try{
+            customerId = Integer.parseInt(sel.nextLine());
+        }
+        catch (InputMismatchException e){
+            System.out.println(e);;
+        }
 
-
-        // TODO
         System.out.print("Enter DeviceId: ");
-        deviceId = Integer.parseInt(sel.nextLine());
+        try{
+            deviceId = Integer.parseInt(sel.nextLine());
+        } catch (InputMismatchException e){
+            System.out.println(e);
+        }
 
         System.out.print("Enter Date: ");
         date = sel.nextLine();
 
-        // TODO
         System.out.print("Enter Type (O online) OR (1 in_store): ");
-        typeSelection = Integer.parseInt(sel.nextLine());
+        try{
+            typeSelection = Integer.parseInt(sel.nextLine());
+        } catch (InputMismatchException e){
+            System.out.println(e);
+        }
 
         if (typeSelection == 0) {
             type = PurchaseType.ONLINE;
@@ -131,7 +170,32 @@ public class Store implements IData{
         return false;
     }
 
-    public void runBazar() {
-        //TODO
+    public void runBazar() throws Exception {
+        int selection;
+        do {
+            selection = menuManager.menuItem();
+            switch (selection) {
+                case 1:
+                    this.createComputers();
+                    break;
+                case 2:
+                    this.createPrinters();
+                    break;
+                case 3:
+                    this.createPurchase();
+                    break;
+                case 4:
+                    this.printComputers();
+                    break;
+                case 5:
+                    this.printPrinters();
+                    break;
+                case 6:
+                    purchaseManager.printPurchases();
+                    break;
+                case 7:
+                    System.exit(0);
+            }
+        }while (selection != 7);
     }
 }

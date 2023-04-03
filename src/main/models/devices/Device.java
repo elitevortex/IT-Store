@@ -8,12 +8,10 @@ abstract public class Device {
 
     // 2 Param construct
     public Device(String newName, String newDescription) throws Exception{
-        if (setName(newName) && setDescription(newDescription)){
-            System.out.println("Successfully made device");
+        if (!setName(newName) || !setDescription(newDescription)) {
+            throw new Exception(("Incorrect length of device name or description"));
         }
-        else{
-            throw new Exception(("Incorect length of device name or description"));
-        }
+
     }
 
     // Getters

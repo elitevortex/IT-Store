@@ -27,7 +27,7 @@ public class Store implements IData{
     }
 
     // creating three computers and saving them in the array "computers"
-    public void createComputers() {
+    public void createComputers() throws Exception {
         String name, description, manufacture;
         Scanner sel = new Scanner(System.in);
         System.out.print("Enter Device (computer) Name:");
@@ -42,7 +42,7 @@ public class Store implements IData{
     }
 
     // creates two printers in the array printers
-    public void createPrinters() {
+    public void createPrinters() throws Exception{
         String name, description;
         int ppm;
         Scanner sel = new Scanner(System.in);
@@ -57,7 +57,7 @@ public class Store implements IData{
         devices.add(aPrinter);
     }
 
-    public void createPurchase() {
+    public void createPurchase() throws Exception {
         int purchaseId;
         int customerId;
         int deviceId;

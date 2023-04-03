@@ -4,15 +4,13 @@ import main.utils.*;
 public class Printer extends Device {
     private int ppm;
 
-    public Printer(String newName, String newDescription, int newPpm){
+    public Printer(String newName, String newDescription, int newPpm) throws Exception{
         super(newName, newDescription);
-
-        try{
-            setPpm(newPpm);
-        } catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
+        if(setPpm(newPpm)){
+            // TODO
+        } else{
+            throw new Exception("Incorrect range of ppm");
         }
-
         setId(generateId());
 
     }

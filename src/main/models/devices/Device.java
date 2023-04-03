@@ -7,14 +7,12 @@ abstract public class Device {
     private String description;
 
     // 2 Param construct
-    public Device(String newName, String newDescription){
-        try {
-            setName(newName);
-            setDescription(newDescription);
+    public Device(String newName, String newDescription) throws Exception{
+        if (setName(newName) && setDescription(newDescription)){
+            System.out.println("Successfully made device");
         }
-        catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
-
+        else{
+            throw new Exception(("Incorect length of device name or description"));
         }
     }
 

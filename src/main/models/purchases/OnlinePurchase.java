@@ -6,15 +6,16 @@ import main.utils.Utils;
 public class OnlinePurchase extends Purchase {
     private String deliveryAddress;
 
-    public OnlinePurchase(int newCustomerId, int newDeviceId , String newDate, String newDeliveryAddress, PurchaseType newType) {
+    public OnlinePurchase(int newCustomerId, int newDeviceId , String newDate,
+                          String newDeliveryAddress, PurchaseType newType) throws Exception {
         super(newCustomerId,newDeviceId , newDate,  newType);
 
         setPurchaseId(newPurchaseId());
 
-        try{
-            setDeliveryAddress(newDeliveryAddress);
-        } catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
+        if(setDeliveryAddress(newDeliveryAddress)){
+            // TODO
+        } else{
+            throw new Exception("Delivery address must be between 5 and 20 characters");
         }
     }
 

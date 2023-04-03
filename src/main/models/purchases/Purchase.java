@@ -10,20 +10,19 @@ public abstract class Purchase {
 
 
     Purchase(){};
-    public Purchase(int newCustomerId, int newDeviceId , String newDate, PurchaseType newType){
-        try {
-            setCustomerId(newCustomerId);
-            setDate(newDate);
-        } catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
+    public Purchase(int newCustomerId, int newDeviceId , String newDate, PurchaseType newType) throws Exception{
+        if (setDate(newDate)){
+            //TODO
+        } else{
+            throw new Exception("Date must be of 8 character in length");
         }
+        this.customerId = newCustomerId;
         this.deviceId = newDeviceId;
         this.date = newDate;
         this.type = newType;
     }
 
     public void setPurchaseId(int Id){this.purchaseId = Id;}
-    public void setCustomerId(int Id){this.customerId = Id;}
 
     public boolean setDate(String newDate) {
         if((Utils.stringInRange(newDate, 8, 8) == true)){

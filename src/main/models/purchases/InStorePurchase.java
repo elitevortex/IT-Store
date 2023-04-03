@@ -6,16 +6,17 @@ import main.utils.Utils;
 public class InStorePurchase extends Purchase {
     private String storeLocation;
 
-    public InStorePurchase(int newCustomerId, int newDeviceId , String newDate, String newStoreLocation, PurchaseType newType) {
+    public InStorePurchase(int newCustomerId, int newDeviceId , String newDate,
+                           String newStoreLocation, PurchaseType newType) throws Exception{
         super(newCustomerId,newDeviceId , newDate,  newType);
 
-        try{
-            setStoreLocation(newStoreLocation);
-        } catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
+        if (setStoreLocation(newStoreLocation)){
+            // TODO
+        } else{
+            throw new Exception("Store location length must be between 3 and 10 characters");
         }
-        setPurchaseId(newPurchaseId());
 
+        setPurchaseId(newPurchaseId());
     }
 
     public String getStoreLocation(){

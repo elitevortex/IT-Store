@@ -6,13 +6,14 @@ public class Computer extends Device {
     private String manufacture;
 
 
-    public Computer(String newName, String newDescription, String newManufacture){
+    public Computer(String newName, String newDescription, String newManufacture) throws Exception {
         super(newName, newDescription);
-        try{
-            setManufacture(newManufacture);
+
+        if (setManufacture(newManufacture)){
+            // TODO
         }
-        catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
+        else{
+            throw new Exception("Incorrect manufacture length");
         }
         setId(generateId());
     }

@@ -14,8 +14,8 @@ public class Store implements IData{
     private ArrayList<Computer> computers = new ArrayList<>();
     private ArrayList<Printer> printers = new ArrayList<>();
     private ArrayList<Device> devices = new ArrayList<>();
-    private PurchaseManager purchaseManager = new PurchaseManager();
-    private IMenuManager menuManager = new MenuManagerEmployee();
+    private PurchaseManager purchaseManager;
+    private IMenuManager menuManager;
     private static Store myStore = null;
 
     private Store(PurchaseManager newPurchaseManager, IMenuManager newMenuManager) throws Exception {
@@ -171,6 +171,7 @@ public class Store implements IData{
     }
 
     public void runBazar() throws Exception {
+
         int selection;
         do {
             selection = menuManager.menuItem();

@@ -1,22 +1,55 @@
 package main.controllers;
 
-import main.models.InStorePurchase;
-import main.models.OnlinePurchase;
-import main.models.Purchase;
+import main.models.purchases.Purchase;
 import main.utils.PurchaseType;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
+/**
+ * PurchaseManager class which allows storage and printing functionality of all made pruchases
+ *
+ * @author Edward Chan 33095019
+ * @version 1.0.0
+ */
 public class PurchaseManager{
+
+    /**
+     * the current PurchaseManager that is initialised as null
+     * allows use of only one purchase at a time
+     */
+    private static PurchaseManager purchaseManager = null;
+
+    /**
+     * An array list of Purchases
+     */
     private ArrayList<Purchase> purchases = new ArrayList<>();
 
+    /**
+     * A method that creates purchases based on a device's availability within the store
+     * @param devices the available devices within the store
+     * @param newPurchase the new Purchase instance
+     */
     public void makePurchase(IData devices, Purchase newPurchase){
         if (devices.isDeviceAvailable(newPurchase.getDeviceId())){
             this.purchases.add(newPurchase);
         }
     }
 
+    /**
+     * A method that creates an instance of a PurchaseManager if we don't currently have one
+     * @return a PurchaseManager instance
+     */
+    public static PurchaseManager getInstance(){
+        PurchaseManager newPurchaseManager = new PurchaseManager();
+        if (newPurchaseManager == null){
+            purchaseManager = newPurchaseManager;
+        }
+        return newPurchaseManager;
+    }
+
+    /**
+     * A method that prints out all purchases made in a tabular format
+     */
     public void printPurchases(){
 
         String leftAlignFormat = "| %-5d | %-5d | %-5d | %-10s | %-8s |%n";

@@ -1,41 +1,42 @@
 package main;
 
 import main.controllers.*;
-import main.utils.MenuManager;
+import main.utils.IMenuManager;
+import main.utils.MenuManagerAdmin;
+import main.utils.MenuManagerEmployee;
 
-import java.awt.*;
+/**
+ *  <h1>Bazar Driver </h1>
+ *  The Bazar Driver program implements an application that
+ *  can control the transactions of a store that stocks printers and computers
+ *
+ *  <p>
+ *      Giving proper comments is optimal but not implemented in this application
+ *  </p>
+ *
+ * @author FIT2099 Edward Chan 33095019
+ * @version 1.0
+ * @since 2023-04-5
+ */
+
 
 public class BazarDriver {
-    public static void main(String[] args) {
-        PurchaseManager purchaseManager = new PurchaseManager();
-        MenuManager menuManager = new MenuManager();
-        Store newStore = new Store(purchaseManager, menuManager);
+    /**
+     * Our main method that creates a purchase manager, a menu manager, and a store, and running the store
+     * @param args the command line arguments
+     * @throws Exception if unsuccessful in creating a purchase manager, menu manager, or store.
+     */
+    public static void main(String[] args) throws Exception{
+        try{
+            PurchaseManager purchaseManager = PurchaseManager.getInstance();
+            IMenuManager  menuManager =  MenuManagerAdmin.getInstance();
+            Store newStore = Store.getInstance(purchaseManager, menuManager);
+            newStore.runBazar();
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
 
-        int selection;
-        do {
-            selection = menuManager.menuItem();
-            switch (selection) {
-                case 1:
-                    newStore.createComputers();
-                    break;
-                case 2:
-                    newStore.createPrinters();
-                    break;
-                case 3:
-                    newStore.createPurchase();
-                    break;
-                case 4:
-                    newStore.printComputers();
-                    break;
-                case 5:
-                    newStore.printPrinters();
-                    break;
-                case 6:
-                    purchaseManager.printPurchases();
-                    break;
-                case 7:
-                    System.exit(0);
-            }
-        }while (selection != 7);
+
     }
 }

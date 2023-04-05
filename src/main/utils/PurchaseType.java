@@ -1,6 +1,15 @@
 package main.utils;
 
+/**
+ * Enumerations for each type of purchase
+ */
 public enum PurchaseType {
+    /**
+     * in-store purchase option
+     */
     IN_STORE,
-    ONLINE,////
+    /**
+     * online purchase option
+     */
+    ONLINE,
 }

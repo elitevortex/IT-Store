@@ -10,20 +10,58 @@ import main.utils.IMenuManager;
 import main.utils.MenuManagerEmployee;
 import main.utils.PurchaseType;
 
+/**
+ * The Store class that implements storage and creation functionality for available devices
+ *
+ * @author Edward Chan 33095019
+ * @version 1.0.0
+ */
 public class Store implements IData{
+    /**
+     * Array list of all Computer instances in the Store
+     */
     private ArrayList<Computer> computers = new ArrayList<>();
+    /**
+     * Array list of all Printers instances in the Store
+     */
     private ArrayList<Printer> printers = new ArrayList<>();
+    /**
+     * Array list of all Device instances in the Store
+     */
     private ArrayList<Device> devices = new ArrayList<>();
+    /**
+     * The purchase manager of the store
+     */
     private PurchaseManager purchaseManager;
+    /**
+     * The MenuManger (Admin or Employee) of the store
+     */
     private IMenuManager menuManager;
+    /**
+     * the current Store that is initialised as null
+     * this allows use of only one purchase at a time
+     */
     private static Store myStore = null;
 
+    /**
+     * A constructor for the Store class
+     * @param newPurchaseManager the purchase manager for the Store instance
+     * @param newMenuManager the menu manager for the Store instance
+     * @throws Exception
+     */
     private Store(PurchaseManager newPurchaseManager, IMenuManager newMenuManager) throws Exception {
         if (!setMenuManager(newMenuManager) || ! setPurchaseManager(newPurchaseManager)){
             throw new Exception("MenuManager or PurchaseManager is null");
         }
     }
 
+    /**
+     * A method that creates a Store instance
+     * @param newPurchaseManager
+     * @param newMenuManager
+     * @return
+     * @throws Exception
+     */
     public static Store getInstance(PurchaseManager newPurchaseManager, IMenuManager newMenuManager) throws Exception{
         Store store =  new Store(newPurchaseManager, newMenuManager);
         if (myStore == null){
@@ -32,6 +70,11 @@ public class Store implements IData{
         return store;
     }
 
+    /**
+     * A method to set the new PurchaseManager a
+     * @param newPurchaseManager the new PurchaseManager object
+     * @return boolean that indicates success validating the new purchase manager
+     */
     public boolean setPurchaseManager(PurchaseManager newPurchaseManager){
         if (newPurchaseManager != null) {
             this.purchaseManager = newPurchaseManager;
@@ -42,6 +85,11 @@ public class Store implements IData{
         }
     }
 
+    /**
+     * A method to set the new MenuManager
+     * @param newMenuManager the new MenuManager object
+     * @return boolean that indicates success validating the new MenuManager
+     */
     public boolean setMenuManager(IMenuManager newMenuManager){
         if (newMenuManager != null){
             this.menuManager = newMenuManager;
@@ -51,8 +99,12 @@ public class Store implements IData{
             return false;
         }
     }
-    // creating three computers and saving them in the array "computers"
-    public void createComputers() throws Exception {
+
+    /**
+     * A method that creates a Computer instance based on user inputted attributes
+     * @throws Exception will throw an Exception if arguments passed into Computer are of incorrect char range
+     */
+    public void createComputers() throws Exception{
         String name, description, manufacture;
         Scanner sel = new Scanner(System.in);
         System.out.print("Enter Device (computer) Name:");
@@ -66,7 +118,10 @@ public class Store implements IData{
         devices.add(aComputer);
     }
 
-    // creates two printers in the array printers
+    /**
+     * A method that creates a Printer instance based on user inputted attributes
+     * @throws Exception will throw an Exception if arguments passed into Printer are of incorrect char range
+     */
     public void createPrinters() throws Exception{
         String name, description;
         int ppm = 0;
@@ -87,6 +142,10 @@ public class Store implements IData{
         devices.add(aPrinter);
     }
 
+    /**
+     * A method that creates a new Purchase based on user selection and device availability in current Store
+     * @throws Exception
+     */
     public void createPurchase() throws Exception {
         int purchaseId;
         int customerId = 0;
@@ -145,21 +204,29 @@ public class Store implements IData{
         }
     }
 
-    // iterates through all the printers in the array and prints them
+    /**
+     * A method that prints all available printers in the store in a tabular format
+     */
     public void printPrinters(){
         for(int i = 0; i < this.printers.size(); i++){
             System.out.println("Printer (" + (i + 1)  + ") ID: " + this.printers.get(i).getId()+ " | Type: Printer " + this.printers.get(i).toString());
         }
     }
 
-    // iterates through all the computers in the array and prints them.
+    /**
+     * A method that prints all available printers in the store in a tabular format
+     */
     public void printComputers(){
         for(int i = 0; i < this.computers.size(); i++){
             System.out.println("Computer (" + (i + 1)  + ") ID: " + this.computers.get(i).getId() + " | Type: Computer " + this.computers.get(i).toString());
         }
     }
 
-
+    /**
+     * A method that checks the availability of a device within the current store
+     * @param id the if of the device being checked
+     * @return a boolean indicating whether the device is in the store
+     */
     @Override
     public boolean isDeviceAvailable(int id) {
         for (Device device: this.devices){
@@ -170,7 +237,11 @@ public class Store implements IData{
         return false;
     }
 
-    public void runBazar() throws Exception {
+    /**
+     * A method that runs store operations based on a switch case that the user can select
+     * @throws Exception throws an exception if any of operations get invalid user inputs
+     */
+    public void runBazar() throws Exception{
 
         int selection;
         do {

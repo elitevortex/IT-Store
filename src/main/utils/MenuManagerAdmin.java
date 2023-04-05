@@ -2,9 +2,22 @@ package main.utils;
 
 import java.util.Scanner;
 
+/**
+ * The MenuManagerAdmin class which implements the IMenuManager interface, and it's respective methods
+ *
+ * @author Edward Chan 33095019
+ * @version 1.0.0
+ */
 public class MenuManagerAdmin implements IMenuManager{
+    /**
+     * An admin menu manager, initialised as null to ensure that we only have a single manager per Store
+     */
     private static MenuManagerAdmin adminMenu = null;
 
+    /**
+     * A method that prints all available operation options to the user
+     * @return an integer that is inputted by the user
+     */
     public int menuItem() {
         Scanner sel = new Scanner(System.in);
 
@@ -21,6 +34,10 @@ public class MenuManagerAdmin implements IMenuManager{
         return choice;
     }
 
+    /**
+     * A method that creates an instance of a menu manager
+     * @return a MenuManagerAdmin instance
+     */
     public static MenuManagerAdmin getInstance(){
         MenuManagerAdmin newAdmin = new MenuManagerAdmin();
         if (newAdmin == null){
